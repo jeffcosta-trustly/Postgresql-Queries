@@ -45,6 +45,7 @@ select
   wait_event_type || ':' || wait_event as wait,
   wait_age,
   tx_age,
+  application_name,
   usename,
   (select count(distinct t1.pid) from tree t1 where array[tree.pid] <@ t1.path and t1.pid <> tree.pid) as blocking,
   format(
