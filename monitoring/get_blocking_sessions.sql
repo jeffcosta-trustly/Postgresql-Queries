@@ -54,7 +54,7 @@ select
     repeat('.', level - 1) || case when level > 1 then ' ' end,
     left(query, 1000)
   ) as query,
-  case when level = 1 then CONCAT('select pg_cancel_backend(', pid, ');') else null end as command
+  case when level = 1 then CONCAT('select pg_terminate_backend(', pid, ');') else null end as command
 from tree
 where level < 10
 order by top_blocker_pid, level, pid;
